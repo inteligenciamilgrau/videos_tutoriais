@@ -5,7 +5,7 @@ import sklearn.model_selection
 import time
 
 nome = "seno-{}".format(int(time.time()))
-tensorboard = tf.keras.callbacks.TensorBoard(log_dir='./logs/{}'.format(nome))
+#tensorboard = tf.keras.callbacks.TensorBoard(log_dir='./logs/{}'.format(nome))
 
 # Get x values of the sine wave
 time = np.arange(0, 10, 0.01);
@@ -55,14 +55,15 @@ model = tf.keras.models.Sequential([
 ])
 
 #sgd = tf.keras.optimizers.SGD(lr=0.1, momentum = 0.9)
-sgd = tf.keras.optimizers.SGD(lr=0.1)
+sgd = tf.keras.optimizers.SGD(learning_rate=0.1)
 #model.compile(optimizer='adam',
 #              loss='sparse_categorical_crossentropy',
 #              metrics=['accuracy'])
 model.compile(loss='mean_squared_error', optimizer=sgd, metrics=['mean_squared_error'])
 
 #plot.scatter(X_train,y_train,s = 10, c = 'r')
-model.fit(X_train, y_train, epochs=300, callbacks=[tensorboard], validation_split=0.3)
+#model.fit(X_train, y_train, epochs=300, callbacks=[tensorboard], validation_split=0.3)
+model.fit(X_train, y_train, epochs=300, validation_split=0.3)
 print(model.evaluate(X_test, y_test))
 
 predicao = model.predict(X_test)
