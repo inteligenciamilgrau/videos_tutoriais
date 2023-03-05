@@ -2,7 +2,7 @@
 
 Neste projeto integro ChatGPT com Python
 
-Será necessário gerar uma API-KEY no site da openai.com que sera usada nos códigos
+Será necessário gerar uma API-KEY no site da <a href="https://openai.com">openai.com</a> que sera usada nos códigos
 
 ## Versões
 - V1 (chatGPT_em_python.py) faz a integraçao da API e um ChatBot por texto.
