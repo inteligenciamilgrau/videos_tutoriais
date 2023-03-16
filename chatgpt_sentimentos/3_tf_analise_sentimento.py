@@ -79,6 +79,3 @@ probs = model.predict(padded)
 class_names = ['Negativo:', 'Positivo:']
 for index, frase in enumerate(frases_avaliacao):
   print(class_names[round(probs[index][0])], probs[index], frase)
-
-
-## 3d cartoon DreamWorks style :: close to a classroom blackboard with math equations, robots yellow and green wearing school uniform having fun :: colorful, funny, detailed facial expressions, cheerful, detailed shadows, Unreal Engine --ar 3:2 --no cupcake --no hats --no cooks --no chefs --no deformities --no extra limbs --no out of frame --no extra fingers
