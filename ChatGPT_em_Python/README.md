@@ -9,6 +9,11 @@ Para instalar os módulos necessários
 pip install -r requirements.txt
 ```
 
+## Erros
+
+**ModuleNotFoundError: No module named 'config_chatkey'**
+- Baixe o arquivo **config_chatkey.py** na pasta do seu projeto e coloque a **"sua_openai_key"** nele (assista o vídeo 1 para maiores esclarecimentos)
+
 ## Versões
 - V1 (chatGPT_em_python.py) faz a integraçao da API e um ChatBot por texto.
 [!["Programando o ChatGPT em Python e Quanto Custa"](https://img.youtube.com/vi/I4ceiHBsN3c/0.jpg)](https://www.youtube.com/watch?v=I4ceiHBsN3c)
