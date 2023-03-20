@@ -10,3 +10,4 @@ Será necessário gerar uma API-KEY no site da <a href="https://openai.com">open
 - V2 (chatGPT_em_python_v2_falando.py) integra voz! Um assistente que ouve e fala com você.
 [!["Assistente ChatGPT com Voz em Python"](https://img.youtube.com/vi/p1mD3aYb2iw/0.jpg)](https://www.youtube.com/watch?v=p1mD3aYb2iw)
 - V3 (chatGPT_em_python_v3_codando.py) integra um gerador de códigos
+[!["Programação Por Voz Com ChatGPT em Python"](https://img.youtube.com/vi/dEqKKzkHo0k/0.jpg)](https://www.youtube.com/watch?v=dEqKKzkHo0k)
