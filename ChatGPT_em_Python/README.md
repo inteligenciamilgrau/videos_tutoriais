@@ -9,7 +9,9 @@ Para instalar os módulos necessários
 pip install -r requirements.txt
 ```
 
-- Dois ChatGPT Tendo uma Conversa Muito Doida
+Seguem alguns vídeos demonstrando e ensinando a usar
+
+## Dois ChatGPT Tendo uma Conversa Muito Doida.
 [!["Dois ChatGPT Tendo uma Conversa Muito Doida"](https://img.youtube.com/vi/huk6p5UIlcw/0.jpg)](https://www.youtube.com/watch?v=huk6p5UIlcw)
 
 ## Erros
