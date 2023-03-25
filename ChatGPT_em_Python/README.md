@@ -11,9 +11,6 @@ pip install -r requirements.txt
 
 Seguem alguns vídeos demonstrando e ensinando a usar
 
-## Dois ChatGPT Tendo uma Conversa Muito Doida.
-[!["Dois ChatGPT Tendo uma Conversa Muito Doida"](https://img.youtube.com/vi/huk6p5UIlcw/0.jpg)](https://www.youtube.com/watch?v=huk6p5UIlcw)
-
 ## Erros
 
 **ModuleNotFoundError: No module named 'config_chatkey'**
@@ -26,3 +23,6 @@ Seguem alguns vídeos demonstrando e ensinando a usar
 [!["Assistente ChatGPT com Voz em Python"](https://img.youtube.com/vi/p1mD3aYb2iw/0.jpg)](https://www.youtube.com/watch?v=p1mD3aYb2iw)
 - V3 (chatGPT_em_python_v3_codando.py) integra um gerador de códigos
 [!["Programação Por Voz Com ChatGPT em Python"](https://img.youtube.com/vi/dEqKKzkHo0k/0.jpg)](https://www.youtube.com/watch?v=dEqKKzkHo0k)
+
+## Dois ChatGPT Tendo uma Conversa Muito Doida.
+[!["Dois ChatGPT Tendo uma Conversa Muito Doida"](https://img.youtube.com/vi/huk6p5UIlcw/0.jpg)](https://www.youtube.com/watch?v=huk6p5UIlcw)
