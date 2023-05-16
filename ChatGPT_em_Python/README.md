@@ -4,7 +4,9 @@ Neste projeto integro ChatGPT com Python
 
 Será necessário gerar uma API-KEY no site da <a href="https://openai.com">openai.com</a> que sera usada nos códigos. Você pode colocar a key diretamente no código ou no arquivo config_chatkey.py a partir da V3.
 
-Para instalar os módulos necessários
+Você precisa instalar o Python em seu computador (https://www.python.org/downloads/), baixar o código deste GitHub!
+
+Para instalar os módulos necessários rode na linha de comando no mesmo diretório do projeto:
 ```
 pip install -r requirements.txt
 ```
