@@ -10,7 +10,10 @@ Para instalar os módulos necessários rode na linha de comando no mesmo diretó
 ```
 pip install -r requirements.txt
 ```
-
+Com tudo instalado agora é só rodar com
+```
+python chatGPT_em_python.py
+```
 Seguem alguns vídeos demonstrando e ensinando a usar
 
 ## Erros
