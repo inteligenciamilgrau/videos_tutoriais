@@ -9,7 +9,7 @@ print("Fazendo uma automação para criar vídeos e 7 etapas")
 ### 7) MoviePY - Criar vídeo juntando imagem e som
 
 chave = "sua-api-key-da-openai"
-YTvideo = 'https://www.youtube.com/watch?v=qWtdWXpmlKs'
+YTvideo = 'https://www.youtube.com/watch?v=gNrLWUDOAH4'
 
 # todo gerar um vídeo com uma musica e uma imagem
 
@@ -73,7 +73,7 @@ resumo_do_texto = generate_answer("Faça um resumo em primeira pessoa deste text
 print("Resumo:", resumo_do_texto)
 
 # gerar descrição de uma imagem
-descricao_imagem = generate_answer("Faça uma descrição amigável com apenas uma frase para gerar uma imagem a partir do texto: '''" + resumo_do_texto + "'''")
+descricao_imagem = generate_answer("Faça uma descrição de uma imagem. Use palavras amigáveis. Sem citar nomes de pessoas famosas. Com apenas uma frase a partir do resumo: '''" + resumo_do_texto + "'''")
 print("Descrição da Imagem:", descricao_imagem)
 
 # gerando um título
