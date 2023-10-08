@@ -1,0 +1,5 @@
+pytube
+openai-whisper
+openai
+pyttsx3
+moviepy
