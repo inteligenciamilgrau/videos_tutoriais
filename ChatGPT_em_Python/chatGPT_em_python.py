@@ -9,11 +9,10 @@ import openai
 openai.api_key = "sua_key_string"
 
 def gerar_resposta(messages):
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo", ##
-        #model="gpt-3.5-turbo-0301", ## ateh 1 junho 2023
+    #response = openai.ChatCompletion.create( ## Api antiga
+    response = openai.chat.completions.create( ## API nova
+        model="gpt-3.5-turbo", 
         messages=messages,
-        max_tokens=1024,
         temperature=0.5
     )
     return [response.choices[0].message.content, response.usage]
