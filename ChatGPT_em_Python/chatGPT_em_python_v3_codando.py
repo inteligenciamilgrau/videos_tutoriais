@@ -38,11 +38,11 @@ code_block_regex = re.compile(r"```(.*?)```", re.DOTALL)
 def generate_answer(messages):
 
     try:
-        response = openai.ChatCompletion.create(
+        #response = openai.ChatCompletion.create( ## Api antiga
+        response = openai.chat.completions.create( ## API nova
             model="gpt-3.5-turbo", ##
             #model="gpt-3.5-turbo-0301", ## ateh 1 junho 2023
             messages=messages,
-            max_tokens=1000,
             temperature=0.1
         )
         return [response.choices[0].message.content, response.usage]
