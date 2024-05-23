@@ -1,22 +1,27 @@
 # pip install elevenlabs # comando para instalar
-from elevenlabs import generate, play, voices, set_api_key, save, User, Voice, VoiceSettings
+#from elevenlabs import generate, play, voices, set_api_key, save, User, Voice, VoiceSettings
+from elevenlabs import play, save, Voice, VoiceSettings
+from elevenlabs.client import ElevenLabs
 
 chave_eleven = "sua_chave_da_elevenlabs"
 
-set_api_key(chave_eleven)
+#set_api_key(chave_eleven)
+client = ElevenLabs(
+  api_key=chave_eleven  # Defaults to ELEVEN_API_KEY
+)
 
 # Pausas entre frases: <break time="0.5s" />
 # Pausas entre palavras: - ou ...
 
 resumo_do_texto = """
 Bem vindo ao Tutorial do Inteligência Mil Grau! <break time="0.5s" />
-Como fazer uma texto e dar uma pausa? <break time="0.5s" />
+Como fazer um texto e dar uma pausa? <break time="0.5s" />
 E agora como falar um pouco da frase - parar - depois continuar! <break time="0.5s" />
 Parabéns
 """
 
 # Escolha sua voz
-voz_escolhida = "Bella" 
+voz_escolhida = "Rachel"
 
 #Configure a voz
 # Increasing variability can make speech more expressive with output varying between re-generations. It can also lead to instabilities.
@@ -37,7 +42,8 @@ boost = False
 falar = True
 save_file = True
 
-user = User.from_api()
+#user = User.from_api()
+user = client.user.get()
 restantes = user.subscription.character_limit - user.subscription.character_count
 print("Restantes:", restantes, "Total:", user.subscription.character_limit)
 
@@ -55,16 +61,17 @@ text = []
 for t in resumo_do_texto:
     if len(t) > 1:
         text.append(t)
-voices = voices()
+#voices = voices()
+voices = client.voices.get_all()
 voice = None
 
-for index, voz in enumerate(voices):
+for index, voz in enumerate(voices.voices):
     print("voz", index, voz.name)
     if voz_escolhida in voz.name:
         print("Escolhida", voz.name)
         voice = voz.voice_id
 
-audio = generate(
+audio = client.generate(
     text=resumo_do_texto,
     voice=Voice(voice_id=voice,
                 settings=VoiceSettings(stability=stability,
