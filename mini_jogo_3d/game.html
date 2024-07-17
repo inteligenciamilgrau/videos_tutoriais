@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo 3D de Perguntas e Respostas</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="config.js"></script>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        #info {
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        #resposta {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-family: Arial, sans-serif;
+            background-color: rgba(0,0,0,0.5);
+            padding: 10px;
+        }
+        #gameOver {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0,0,0,0.8);
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            text-align: center;
+            display: none;
+        }
+        #novoJogo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0,0,0,0.8);
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+        #mensagemPersonalizada {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0,0,0,0.8);
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            text-align: center;
+            display: none;
+        }
+        #mensagemInput {
+            width: 300px;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        #regras {
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-family: Arial, sans-serif;
+            background-color: rgba(0,0,0,0.5);
+            padding: 10px;
+        }
+        #info {
+            position: absolute;
+            top: 60px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-family: Arial, sans-serif;
+        }        
+    </style>
+</head>
+<body>
+    <div id="regras">Regra: Você precisa encontrar o tesouro! Pergunte para as pessoas clicando com o botão direito! Elas darão pistas! Depois você deve clicar no baú que acredita estar o tesouro!</div>
+    <div id="info">Use as setas ou WASD para mover e clique nos personagens para fazer perguntas.</div>
+    <div id="resposta"></div>
+    <div id="gameOver">
+        <h2>Game Over</h2>
+        <p>Você escolheu o baú errado!</p>
+        <button onclick="reiniciarJogo()">Jogar Novamente</button>
+    </div>
+    <div id="novoJogo">Começando novo jogo!!</div>
+    <div id="mensagemPersonalizada">
+        <input type="text" id="mensagemInput" placeholder="Digite sua mensagem...">
+        <button onclick="enviarMensagemPersonalizada()">Enviar</button>
+        <button onclick="fecharMensagemPersonalizada()">Cancelar</button>
+    </div>
+
+    <script>
+        let scene, camera, renderer, personagens, baus, bauCorreto;
+        let movimentoHabilitado = true;
+        const respostaElement = document.getElementById('resposta');
+        const gameOverElement = document.getElementById('gameOver');
+        const novoJogoElement = document.getElementById('novoJogo');
+
+        function init() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
+
+            // Luz
+            const light = new THREE.PointLight(0xffffff, 1, 100);
+            light.position.set(0, 10, 0);
+            scene.add(light);
+
+            // Céu azul
+            scene.background = new THREE.Color(0x87CEEB);
+
+            // Chão verde
+            const planeGeometry = new THREE.PlaneGeometry(20, 20);
+            const planeMaterial = new THREE.MeshBasicMaterial({color: 0x32CD32, side: THREE.DoubleSide});
+            const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+            plane.rotation.x = Math.PI / 2;
+            plane.position.y = -2;
+            scene.add(plane);
+
+            // Personagens
+            personagens = [
+                criarYoda(-5, 0, 0, "Mestre Yoda"),
+                criarMentiroso(0, 0, 0, "Mentiroso"),
+                criarLouco(5, 0, 0, "Louco")
+            ];
+
+            // Baús
+            baus = [
+                criarBauPirata(-3, -1, 3),
+                criarBauPirata(0, -1, 3),
+                criarBauPirata(3, -1, 3)
+            ];
+
+            randomizarBauCorreto();
+
+            camera.position.z = 10;
+            camera.position.y = 2;
+
+            // Mostrar mensagem de novo jogo
+            novoJogoElement.style.display = 'block';
+            setTimeout(() => {
+                novoJogoElement.style.display = 'none';
+            }, 3000);
+        }
+
+        let personagemSelecionado = null;
+
+        function onContextMenu(event) {
+            event.preventDefault();
+            const raycaster = new THREE.Raycaster();
+            const mouse = new THREE.Vector2();
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+            raycaster.setFromCamera(mouse, camera);
+
+            const intersects = raycaster.intersectObjects(scene.children);
+            if (intersects.length > 0) {
+                const objeto = intersects[0].object;
+                if (personagens.includes(objeto)) {
+                    personagemSelecionado = objeto.name;
+                    document.getElementById('mensagemPersonalizada').style.display = 'block';
+                    movimentoHabilitado = false; // Desabilita o movimento
+                }
+            }
+        }
+
+        function enviarMensagemPersonalizada() {
+            const mensagem = document.getElementById('mensagemInput').value;
+            if (mensagem && personagemSelecionado) {
+                fazerPerguntaPersonalizada(personagemSelecionado, mensagem);
+                fecharMensagemPersonalizada();
+                movimentoHabilitado = true; // Reabilita o movimento
+            }
+        }
+
+
+        function fecharMensagemPersonalizada() {
+            document.getElementById('mensagemPersonalizada').style.display = 'none';
+            document.getElementById('mensagemInput').value = '';
+            personagemSelecionado = null;
+            movimentoHabilitado = true; // Reabilita o movimento
+        }
+
+
+        async function fazerPerguntaPersonalizada(personagem, mensagem) {
+            const personagemObj = personagens.find(p => p.name === personagem);
+            const distancia = camera.position.distanceTo(personagemObj.position);
+            
+            if (distancia <= 3) { // Player is close enough (within 3 units)
+                const resposta = await gerarRespostaChatGPT(personagem, bauCorreto, mensagem);
+                respostaElement.textContent = `${personagem} diz: ${resposta}`;
+                // Gere e reproduza a voz
+                let voice;
+                switch(personagem) {
+                    case "Mestre Yoda":
+                        voice = "onyx";
+                        break;
+                    case "Mentiroso":
+                        voice = "echo";
+                        break;
+                    case "Louco":
+                        voice = "fable";
+                        break;
+                }
+                await generateSpeech(resposta, voice);
+            } else {
+                informar = "Ninguém escutou sua pergunta. Aproxime-se mais do personagem!";
+                respostaElement.textContent = informar;
+                await generateSpeech(informar, "alloy");
+            }
+            movimentoHabilitado = true; // Reabilita o movimento após receber a resposta
+        }
+
+
+        function criarYoda(x, y, z, nome) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 256;
+            canvas.height = 256;
+            const ctx = canvas.getContext('2d');
+
+            // Corpo
+            ctx.fillStyle = '#2ecc71';
+            ctx.beginPath();
+            ctx.ellipse(128, 160, 60, 80, 0, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Cabeça
+            ctx.fillStyle = '#2ecc71';
+            ctx.beginPath();
+            ctx.arc(128, 80, 60, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Olhos
+            ctx.fillStyle = 'white';
+            ctx.beginPath();
+            ctx.arc(108, 70, 15, 0, Math.PI * 2);
+            ctx.arc(148, 70, 15, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = 'black';
+            ctx.beginPath();
+            ctx.arc(108, 70, 8, 0, Math.PI * 2);
+            ctx.arc(148, 70, 8, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Orelhas
+            ctx.fillStyle = '#2ecc71';
+            ctx.beginPath();
+            ctx.moveTo(68, 80);
+            ctx.lineTo(38, 40);
+            ctx.lineTo(98, 60);
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.moveTo(188, 80);
+            ctx.lineTo(218, 40);
+            ctx.lineTo(158, 60);
+            ctx.fill();
+
+            return criarSprite(canvas, x, y, z, nome);
+        }
+
+        function criarMentiroso(x, y, z, nome) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 256;
+            canvas.height = 256;
+            const ctx = canvas.getContext('2d');
+
+            // Corpo
+            ctx.fillStyle = '#e74c3c';
+            ctx.fillRect(78, 100, 100, 150);
+
+            // Cabeça
+            ctx.fillStyle = '#f39c12';
+            ctx.beginPath();
+            ctx.arc(128, 70, 60, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Olhos
+            ctx.fillStyle = 'white';
+            ctx.beginPath();
+            ctx.arc(108, 60, 15, 0, Math.PI * 2);
+            ctx.arc(148, 60, 15, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = 'black';
+            ctx.beginPath();
+            ctx.arc(108, 60, 8, 0, Math.PI * 2);
+            ctx.arc(148, 60, 8, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Boca (sorriso malicioso)
+            ctx.strokeStyle = 'black';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.arc(128, 90, 30, 0.1 * Math.PI, 0.9 * Math.PI);
+            ctx.stroke();
+
+            return criarSprite(canvas, x, y, z, nome);
+        }
+
+        function criarLouco(x, y, z, nome) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 256;
+            canvas.height = 256;
+            const ctx = canvas.getContext('2d');
+
+            // Corpo
+            ctx.fillStyle = '#9b59b6';
+            ctx.fillRect(78, 100, 100, 150);
+
+            // Cabeça
+            ctx.fillStyle = '#3498db';
+            ctx.beginPath();
+            ctx.arc(128, 70, 60, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Olhos (espirais)
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = 3;
+            for (let i = 0; i < 2; i++) {
+                ctx.beginPath();
+                ctx.arc(108 + i * 40, 60, 15, 0, 4 * Math.PI);
+                ctx.stroke();
+            }
+
+            // Cabelo maluco
+            ctx.strokeStyle = '#f1c40f';
+            ctx.lineWidth = 4;
+            for (let i = 0; i < 8; i++) {
+                ctx.beginPath();
+                ctx.moveTo(128, 10);
+                ctx.quadraticCurveTo(
+                    128 + 80 * Math.cos(i * Math.PI / 4),
+                    40 + 40 * Math.sin(i * Math.PI / 4),
+                    128 + 60 * Math.cos(i * Math.PI / 4),
+                    70 + 60 * Math.sin(i * Math.PI / 4)
+                );
+                ctx.stroke();
+            }
+
+            // Boca (sorriso torto)
+            ctx.strokeStyle = 'black';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(98, 100);
+            ctx.quadraticCurveTo(128, 140, 158, 90);
+            ctx.stroke();
+
+            return criarSprite(canvas, x, y, z, nome);
+        }
+
+        function criarSprite(canvas, x, y, z, nome) {
+            const texture = new THREE.CanvasTexture(canvas);
+            const material = new THREE.SpriteMaterial({ map: texture });
+            const sprite = new THREE.Sprite(material);
+            sprite.position.set(x, y + 1, z);
+            sprite.scale.set(2, 2, 1);
+            sprite.name = nome;
+            scene.add(sprite);
+            return sprite;
+        }
+
+        function criarTexturaBau() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 128;
+            canvas.height = 128;
+            const ctx = canvas.getContext('2d');
+
+            // Cor base do baú
+            ctx.fillStyle = '#8B4513';
+            ctx.fillRect(0, 0, 128, 128);
+
+            // Detalhes dourados
+            ctx.fillStyle = '#FFD700';
+            ctx.fillRect(10, 10, 108, 10);
+            ctx.fillRect(10, 108, 108, 10);
+            ctx.fillRect(10, 10, 10, 108);
+            ctx.fillRect(108, 10, 10, 108);
+
+            // Fechadura
+            ctx.fillStyle = '#000000';
+            ctx.fillRect(58, 54, 12, 20);
+            ctx.fillStyle = '#FFD700';
+            ctx.fillRect(60, 56, 8, 16);
+
+            return new THREE.CanvasTexture(canvas);
+        }
+
+        function criarBauPirata(x, y, z) {
+            const geometria = new THREE.BoxGeometry(1, 0.8, 1);
+            const material = new THREE.MeshPhongMaterial({ map: criarTexturaBau() });
+            const bau = new THREE.Mesh(geometria, material);
+            bau.position.set(x, y, z);
+            scene.add(bau);
+            return bau;
+        }
+
+        function desenharTrofeu() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 200;
+            canvas.height = 400;
+            const ctx = canvas.getContext('2d');
+
+            // Base do troféu
+            ctx.fillStyle = '#FFD700';
+            ctx.beginPath();
+            ctx.moveTo(80, 180);
+            ctx.lineTo(120, 180);
+            ctx.lineTo(130, 160);
+            ctx.lineTo(70, 160);
+            ctx.closePath();
+            ctx.fill();
+
+            // Corpo do troféu
+            ctx.beginPath();
+            ctx.moveTo(70, 160);
+            ctx.quadraticCurveTo(60, 100, 100, 80);
+            ctx.quadraticCurveTo(140, 100, 130, 160);
+            ctx.closePath();
+            ctx.fill();
+
+            // Alças
+            ctx.beginPath();
+            ctx.moveTo(70, 120);
+            ctx.quadraticCurveTo(40, 120, 40, 100);
+            ctx.quadraticCurveTo(40, 80, 70, 80);
+            ctx.moveTo(130, 120);
+            ctx.quadraticCurveTo(160, 120, 160, 100);
+            ctx.quadraticCurveTo(160, 80, 130, 80);
+            ctx.stroke();
+
+            return canvas;
+        }
+
+        function desenharFantasma() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 200;
+            canvas.height = 400;
+            const ctx = canvas.getContext('2d');
+
+            // Variável para ajustar a altura inicial do fantasma
+            const alturaInicial = 140; // Você pode ajustar este valor conforme necessário
+
+            // Corpo do fantasma
+            ctx.fillStyle = '#FFFFFF';
+            ctx.beginPath();
+            ctx.moveTo(50, alturaInicial + 20);
+            ctx.quadraticCurveTo(50, alturaInicial - 60, 100, alturaInicial - 100);
+            ctx.quadraticCurveTo(150, alturaInicial - 60, 150, alturaInicial + 20);
+            ctx.lineTo(135, alturaInicial + 5);
+            ctx.lineTo(120, alturaInicial + 20);
+            ctx.lineTo(105, alturaInicial + 5);
+            ctx.lineTo(90, alturaInicial + 20);
+            ctx.lineTo(75, alturaInicial + 5);
+            ctx.lineTo(60, alturaInicial + 20);
+            ctx.closePath();
+            ctx.fill();
+
+            // Olhos
+            ctx.fillStyle = '#000000';
+            ctx.beginPath();
+            ctx.arc(80, alturaInicial - 60, 10, 0, Math.PI * 2);
+            ctx.arc(120, alturaInicial - 60, 10, 0, Math.PI * 2);
+            ctx.fill();
+
+            return canvas;
+        }
+
+
+
+        function randomizarBauCorreto() {
+            bauCorreto = Math.floor(Math.random() * 3);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+
+        function onMouseClick(event) {
+            const raycaster = new THREE.Raycaster();
+            const mouse = new THREE.Vector2();
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+            raycaster.setFromCamera(mouse, camera);
+
+            const intersects = raycaster.intersectObjects(scene.children);
+            if (intersects.length > 0) {
+                const objeto = intersects[0].object;
+                if (personagens.includes(objeto)) {
+                    //fazerPergunta(objeto.name);
+                } else if (baus.includes(objeto)) {
+                    abrirBau(baus.indexOf(objeto));
+                }
+            }
+        }
+
+        async function fazerPergunta(personagem) {
+            const personagemObj = personagens.find(p => p.name === personagem);
+            const distancia = camera.position.distanceTo(personagemObj.position);
+            
+            if (distancia <= 3) {
+                const resposta = await gerarRespostaChatGPT(personagem, bauCorreto);
+                respostaElement.textContent = `${personagem} diz: ${resposta}`;
+                
+                // Gere e reproduza a voz
+                let voice;
+                switch(personagem) {
+                    case "Mestre Yoda":
+                        voice = "onyx";
+                        break;
+                    case "Mentiroso":
+                        voice = "echo";
+                        break;
+                    case "Louco":
+                        voice = "fable";
+                        break;
+                }
+
+                await generateSpeech(resposta, voice);
+            } else {
+                informar = "Ninguém escutou sua pergunta. Aproxime-se mais do personagem!";
+                respostaElement.textContent = informar;
+                await generateSpeech(informar, "alloy");
+            }
+        }
+
+        async function gerarRespostaChatGPT(personagem, bauCorreto, mensagemPersonalizada) {
+            const baus = ['esquerda', 'meio', 'direita'];
+            const bauCorretoTexto = baus[bauCorreto];
+
+            const apiKey = config.apiKey;
+            const apiUrl = 'https://api.openai.com/v1/chat/completions';
+
+            const prompt = `
+Você é o personagem "${personagem}" em um jogo onde o jogador deve escolher entre três baús de pirata: esquerda, meio e direita. 
+O baú correto é o do ${bauCorretoTexto}. 
+
+Responda à pergunta do jogador de acordo com a personalidade do seu personagem. 
+Se você for o "Mentiroso", sempre dê uma resposta falsa. 
+Se for o "Louco", dê uma resposta maluca que pode ser verdadeira ou falsa. 
+Se for o "Mestre Yoda", fale de forma enigmática mas tente incluir uma dica sobre o baú correto.
+Responda somente de acordo com seu personagem.
+Não diga quem você é quando for responder.
+
+Se houver uma pergunta, responda apenas esta pergunta conforme seu personagem:"${mensagemPersonalizada}".
+
+`;
+
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`
+                },
+                body: JSON.stringify({
+                    model: "gpt-3.5-turbo",
+                    messages: [{role: "user", content: prompt}],
+                    max_tokens: 3000
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            return data.choices[0].message.content.trim();
+        }
+
+        async function generateSpeech(text, voice) {
+            const apiKey = config.apiKey;
+            const response = await fetch('https://api.openai.com/v1/audio/speech', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`
+                },
+                body: JSON.stringify({
+                    model:"tts-1",
+                    voice:voice,
+                    input:text
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const audioBlob = await response.blob();
+            const audioUrl = URL.createObjectURL(audioBlob);
+            const audio = new Audio(audioUrl);
+            audio.play();
+        }
+
+        function abrirBau(index) {
+            const bauObj = baus[index];
+            const distancia = camera.position.distanceTo(bauObj.position);
+            
+            if (distancia <= 6) { // Player is close enough (within 6 units)
+                if (index === bauCorreto) {
+                    informar = "Parabéns! Você abriu o baú do tesouro e encontrou o portal do Inteligência Mil Grau!";
+                    respostaElement.textContent = informar;
+                    generateSpeech(informar, "alloy");
+                    const trofeu = desenharTrofeu();
+                    document.body.appendChild(trofeu);
+                    trofeu.style.position = 'absolute';
+                    trofeu.style.top = '50%';
+                    trofeu.style.left = '50%';
+                    trofeu.style.transform = 'translate(-50%, -50%)';
+                    setTimeout(() => {
+                        document.body.removeChild(trofeu);
+                        reiniciarJogo();
+                    }, 3000);
+                } else {
+                    informar = "Baú errado!";
+                    respostaElement.textContent = informar;
+                    generateSpeech(informar, "alloy");
+                    const fantasma = desenharFantasma();
+                    document.body.appendChild(fantasma);
+                    fantasma.style.position = 'absolute';
+                    fantasma.style.top = '50%';
+                    fantasma.style.left = '50%';
+                    fantasma.style.transform = 'translate(-50%, -50%)';
+                    gameOverElement.style.display = 'block';
+                    setTimeout(() => {
+                        document.body.removeChild(fantasma);
+                    }, 3000);
+                }
+            } else {
+                informar = "Você não consegue alcançar o baú. Aproxime-se mais!";
+                respostaElement.textContent = informar;
+                generateSpeech(informar, "alloy");
+            }
+        }
+
+
+        function reiniciarJogo() {
+            randomizarBauCorreto();
+            gameOverElement.style.display = 'none';
+            respostaElement.textContent = '';
+            camera.position.set(0, 2, 10);
+            
+            // Mostrar mensagem de novo jogo
+            novoJogoElement.style.display = 'block';
+            setTimeout(() => {
+                novoJogoElement.style.display = 'none';
+            }, 3000);
+        }
+
+        function onKeyDown(event) {
+            if (!movimentoHabilitado) return;
+            
+            const velocidade = 0.3;
+            switch (event.key.toLowerCase()) {
+                case "arrowup":
+                case "w":
+                    camera.position.z -= velocidade;
+                    break;
+                case "arrowdown":
+                case "s":
+                    camera.position.z += velocidade;
+                    break;
+                case "arrowleft":
+                case "a":
+                    camera.position.x -= velocidade;
+                    break;
+                case "arrowright":
+                case "d":
+                    camera.position.x += velocidade;
+                    break;
+            }
+        }
+
+
+        init();
+        animate();
+        window.addEventListener('click', onMouseClick, false);
+        window.addEventListener('keydown', onKeyDown, false);
+        window.addEventListener('contextmenu', onContextMenu, false);
+
+    </script>
+</body>
+</html>
