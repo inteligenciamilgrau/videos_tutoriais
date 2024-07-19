@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assistente do I=MG²</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        #model-select {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        #chat-history {
+            flex-grow: 1;
+            overflow-y: auto;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+        }
+        .message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .user-message {
+            background-color: #dcf8c6;
+            align-self: flex-end;
+        }
+        .assistant-message {
+            background-color: #e9e9eb;
+            align-self: flex-start;
+        }
+        .input-area {
+            display: flex;
+            margin-top: auto;
+        }
+        #user-input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+        }
+        #send-button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #send-button:hover {
+            background-color: #45a049;
+        }
+        #voice-toggle {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #voice-toggle:hover {
+            background-color: #45a049;
+        }
+        #voice-toggle.off {
+            background-color: #f44336;
+        }
+        #voice-toggle.off:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Assistente do I=MG²</h1>
+        <select id="model-select">
+            {% for model in models %}
+            <option value="{{ model }}" {% if model == default_model %}selected{% endif %}>{{ model }}</option>
+            {% endfor %}
+        </select>
+        <button id="voice-toggle">Voz: Ligada</button>
+        <div id="chat-history"></div>
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="Digite sua mensagem...">
+            <button id="send-button">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        const chatHistory = document.getElementById('chat-history');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+        const modelSelect = document.getElementById('model-select');
+        const voiceToggle = document.getElementById('voice-toggle');
+
+        let conversationHistory = [{"role": "system", "content": "Você é um assistente atencioso."}];
+        let voiceEnabled = true;
+
+        sendButton.addEventListener('click', sendMessage);
+        userInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        voiceToggle.addEventListener('click', function() {
+            voiceEnabled = !voiceEnabled;
+            if (voiceEnabled) {
+                voiceToggle.textContent = "Voz: Ligada";
+                voiceToggle.classList.remove('off');
+            } else {
+                voiceToggle.textContent = "Voz: Desligada";
+                voiceToggle.classList.add('off');
+            }
+        });
+
+        function sendMessage() {
+            const message = userInput.value.trim();
+            if (message) {
+                appendMessage('Você', message, 'user-message');
+                userInput.value = '';
+
+                axios.post('/chat', {
+                    model: modelSelect.value,
+                    user_input: message,
+                    conversation_history: conversationHistory,
+                    voice_enabled: voiceEnabled
+                })
+                .then(function (response) {
+                    const assistantResponse = response.data.response;
+                    appendMessage('Assistente', assistantResponse, 'assistant-message');
+                    conversationHistory = response.data.conversation_history;
+                    
+                    // Play the audio response if voice is enabled
+                    if (voiceEnabled && response.data.audio_file) {
+                        const audio = new Audio(`/audio/${response.data.audio_file}`);
+                        audio.play();
+                    }
+                })
+                .catch(function (error) {
+                    console.error('Erro:', error);
+                    appendMessage('Erro', 'Ocorreu um erro ao processar sua solicitação.', 'assistant-message');
+                });
+            }
+        }
+
+        function appendMessage(sender, message, className) {
+            const messageElement = document.createElement('div');
+            messageElement.className = `message ${className}`;
+            messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+            chatHistory.appendChild(messageElement);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+        }
+    </script>
+</body>
+</html>
