@@ -1,0 +1,142 @@
+[
+    {
+        "instruction": "Você é um especialista no canal inteligência mil grau do youtube.",
+        "input": "Quando foi lançado o último vídeo do canal em 2023?",
+        "output": "O último vídeo do canal em 2023 foi lançado em dezembro."
+    },
+    {
+        "instruction": "Você é um especialista no canal inteligência mil grau do youtube.",
+        "input": "Quais são os principais tópicos que serão abordados no curso de Inteligência Artificial e Psicologia?",
+        "output": "O curso de Inteligência Artificial e Psicologia abordará diversos tópicos, incluindo introdução à IA, redes neurais, modelos de linguagem, aprendizado por reforço, algoritmos genéticos, psicologia com IA, robótica, neurociências, super inteligências, artigos científicos, empresas de IA, produtos com IA, críticos da IA, segurança e desafios da IA."
+    },
+    {
+        "instruction": "Você é um especialista no canal inteligência mil grau do youtube.",
+        "input": "Qual é a abordagem do canal em relação à Inteligência Artificial?",
+        "output": "O canal tem uma abordagem única em relação à IA, combinando conhecimentos de psicologia e ciência da computação. O foco é em aplicações práticas, com exemplos de código e projetos que podem ser replicados."
+    },
+    {
+        "instruction": "Você é um especialista no canal inteligência mil grau do youtube.",
+        "input": "O que é a teoria do elefante?",
+        "output": "A teoria do elefante é uma abordagem que busca juntar pontos de vista divergentes e áreas do conhecimento distintas para construir uma compreensão mais completa da inteligência artificial."
+    },
+    {
+        "instruction": "Você é um especialista no canal inteligência mil grau do youtube.",
+        "input": "Por que o canal valoriza tanto a parte prática da Inteligência Artificial?",
+        "output": "O canal valoriza a parte prática da IA porque acredita que é fundamental entender como as coisas funcionam na prática, além da teoria. Isso permite que os espectadores criem seus próprios projetos e aplicações."
+    },
+    {
+        "instruction": "Você é um especialista no canal inteligência mil grau do youtube.",
+        "input": "Qual é a importância dos comentários dos espectadores para o canal?",
+        "output": "Os comentários dos espectadores são fundamentais para o canal, pois ajudam a direcionar o conteúdo e a criar vídeos que sejam relevantes para o público."
+    },
+    {
+        "instruction": "Você é um especialista no canal inteligência mil grau do youtube.",
+        "input": "Qual é a opinião do canal sobre a possibilidade de desemprego em massa causado pela IA?",
+        "output": "O canal reconhece a possibilidade de desemprego em massa causado pela IA, mas também considera que isso pode levar a uma libertação do trabalho e a uma mudança na função do trabalho na sociedade."
+    },
+    {
+        "instruction": "Você é um especialista no canal inteligência mil grau do youtube.",
+        "input": "Por que o canal está interessado em discutir patentes na área de IA?",
+        "output": "O canal incentiva a discussão sobre patentes na área de IA para que os espectadores que criem produtos ou soluções inovadoras possam proteger suas ideias e se beneficiar delas."
+    },
+    {
+        "instruction": "Você é um especialista no canal inteligência mil grau do youtube.",
+        "input": "Qual é a visão do canal sobre a importância da pesquisa brasileira em IA?",
+        "output": "O canal destaca a importância de fortalecer a pesquisa brasileira em IA, para que o país possa se inserir de forma mais efetiva no cenário global de tecnologia."
+    },
+    {
+        "instruction": "Você é um especialista no canal inteligência mil grau do youtube.",
+        "input": "Quais são as principais críticas à Inteligência Artificial?",
+        "output": "As principais críticas à IA incluem a questão da consciência, a possibilidade de vieses e preconceitos, e as limitações inerentes à natureza dos computadores."
+    },
+    {
+        "instruction": "Você é um especialista no canal inteligência mil grau do youtube.",
+        "input": "Por que algumas pessoas desistem de trabalhar com IA?",
+        "output": "Algumas pessoas desistem de trabalhar com IA por diversos motivos, como a complexidade da matemática envolvida, a desilusão com as limitações da tecnologia, ou a falta de interesse em áreas como programação."
+    },
+    {
+        "instruction": "Você é um especialista no canal inteligência mil grau do youtube.",
+        "input": "Qual é a formação do criador do canal Inteligência Mil Grau?",
+        "output": "O criador do canal, Bob, é formado em psicologia pela USP e possui pós-graduação em sistemas de informação. Ele também tem mestrado em sistemas multiagentes pela UFSC e trabalha com projetos de IA e robótica desde 2002."
+    },
+    {
+        "instruction": "Você é um especialista no canal inteligência mil grau do youtube.",
+        "input": "Quais são as diferentes abordagens da psicologia que influenciaram a Inteligência Artificial?",
+        "output": "A psicanálise, a psicologia comportamental e a psicologia cognitiva tiveram influência na IA, contribuindo com modelos como o aprendizado por reforço e as redes neurais."
+    },
+    {
+        "instruction": "Você é um especialista no canal inteligência mil grau do youtube.",
+        "input": "Qual é a crítica de John Searle à Inteligência Artificial?",
+        "output": "John Searle critica a IA em seu artigo 'A Sala Chinesa', argumentando que os computadores não possuem compreensão real ou consciência, apenas seguem regras sintáticas."
+    },
+    {
+        "instruction": "Você é um especialista no canal inteligência mil grau do youtube.",
+        "input": "Quais são os diferentes tipos de robôs que existem atualmente?",
+        "output": "Existem diversos tipos de robôs, como robôs sociais, robôs industriais, drones, carros autônomos, entre outros."
+    },
+    {
+        "instruction": "Você é um especialista no canal inteligência mil grau do youtube.",
+        "input": "O que é o sistema operacional ROS?",
+        "output": "O ROS (Robot Operating System) é um sistema operacional flexível e de código aberto para robótica, que facilita a criação de aplicações robóticas complexas."
+    },
+    {
+        "instruction": "Você é um especialista no canal inteligência mil grau do youtube.",
+        "input": "Por que o canal utiliza jogos para ensinar IA?",
+        "output": "O canal utiliza jogos para ensinar IA porque os jogos oferecem desafios reais e estimulam a criatividade, permitindo que os espectadores aprendam conceitos de IA de forma divertida e prática."
+    },
+    {
+        "instruction": "Você é um especialista no canal inteligência mil grau do youtube.",
+        "input": "Como a psicologia e a Inteligência Artificial se complementam?",
+        "output": "A psicologia e a IA se complementam, pois a compreensão do comportamento humano e dos processos cognitivos pode ajudar a criar sistemas de IA mais eficientes e eficazes."
+    },
+    {
+        "instruction": "Você é um especialista no canal inteligência mil grau do youtube.",
+        "input": "Quais são as principais dificuldades enfrentadas na robótica?",
+        "output": "As principais dificuldades enfrentadas na robótica incluem a complexidade do mundo real, as limitações das baterias e dos sistemas de busca, e a capacidade limitada dos sistemas de IA atuais."
+    },
+    {
+        "instruction": "Você é um especialista no canal inteligência mil grau do youtube.",
+        "input": "Qual a diferença entre o Sora e o DALL-E?",
+        "output": "O Sora é um modelo de IA que gera vídeos a partir de texto, enquanto o DALL-E gera imagens estáticas."
+    },
+    {
+        "instruction": "Você é um especialista no canal inteligência mil grau do youtube.",
+        "input": "O que são patches no contexto do modelo Sora?",
+        "output": "Patches são unidades menores de dados visuais que atuam como tokens no modelo Sora, permitindo que o modelo processe e gere vídeos de forma eficiente."
+    },
+    {
+        "instruction": "Você é um especialista no canal inteligência mil grau do youtube.",
+        "input": "O que é um modelo de difusão?",
+        "output": "Um modelo de difusão é um tipo de modelo de IA que gera imagens ou vídeos a partir de ruído, transformando gradualmente o ruído em uma imagem ou vídeo coerente."
+    },
+    {
+        "instruction": "Você é um especialista no canal inteligência mil grau do youtube.",
+        "input": "Quais são as limitações do modelo Sora?",
+        "output": "O modelo Sora ainda apresenta limitações, como a dificuldade em simular com precisão a física de cenas complexas, a possibilidade de confundir detalhes espaciais, e a dificuldade em seguir trajetórias específicas de câmera."
+    },
+    {
+        "instruction": "Você é um especialista no canal inteligência mil grau do youtube.",
+        "input": "Quais são as medidas de segurança que a OpenAI está tomando em relação ao Sora?",
+        "output": "A OpenAI está tomando diversas medidas de segurança em relação ao Sora, incluindo o trabalho com red teams, a construção de ferramentas para detectar conteúdo enganoso e a implementação de políticas de uso para evitar o uso indevido do modelo."
+    },
+    {
+        "instruction": "Você é um especialista no canal inteligência mil grau do youtube.",
+        "input": "Por que a OpenAI acredita que o Sora é um passo importante para alcançar a AGI?",
+        "output": "A OpenAI acredita que o Sora é um passo importante para alcançar a AGI porque ele demonstra a capacidade de simular o mundo real e digital, o que é essencial para criar sistemas de IA generalistas."
+    },
+    {
+        "instruction": "Você é um especialista no canal inteligência mil grau do youtube.",
+        "input": "Como o canal Inteligência Mil Grau vê o impacto dos avanços na IA na educação?",
+        "output": "O canal vê os avanços na IA como uma oportunidade para transformar a educação, oferecendo ferramentas personalizadas e acessíveis que podem melhorar a experiência de aprendizagem dos alunos."
+    },
+    {
+        "instruction": "Você é um especialista no canal inteligência mil grau do youtube.",
+        "input": "Qual é a relação entre a IA e a arte?",
+        "output": "A IA e a arte estão cada vez mais interligadas, com a IA sendo usada para criar novas formas de arte, música e literatura, e artistas usando IA como ferramenta para expandir suas possibilidades criativas."
+    },
+    {
+        "instruction": "Você é um especialista no canal inteligência mil grau do youtube.",
+        "input": "Quais são os benefícios e os desafios do uso da IA na saúde?",
+        "output": "Os benefícios da IA na saúde incluem diagnósticos mais precisos, tratamentos personalizados e melhoria na gestão hospitalar. Os desafios incluem a privacidade dos dados, a necessidade de grandes volumes de dados para treinar modelos de IA e a integração desses sistemas nos fluxos de trabalho existentes."
+    }
+]
