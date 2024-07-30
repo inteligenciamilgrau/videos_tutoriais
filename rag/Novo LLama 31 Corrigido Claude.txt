@@ -1,0 +1,79 @@
+É isso aí, pessoal! A Meta acabou de liberar o modelo Llama 3.1, que é o maior modelo de Inteligência Artificial gratuito de código aberto, com 405 bilhões de parâmetros. Ele também tem a versão de 70B e a versão de 8 bilhões de parâmetros. Vamos entender o que está acontecendo aqui agora.
+
+Vamos lá! Sempre agradecendo a todo mundo que se inscreveu, todo mundo que deixou seu like. Já deixa aquele like aqui embaixo, maroto! Um agradecimento especial a todos os membros que participam do nosso grupo do WhatsApp.
+
+A notícia de hoje, então, é que a Meta, como sempre, vem liberando seus modelos de Inteligência Artificial de forma gratuita. Mas dessa vez, ela lançou o maior modelo do mercado. A ideia é que eles estão puxando o carro-chefe, aquele que vai liderar todo mundo.
+
+Bom, o que está acontecendo aqui? O modelo antigo era o modelo 3, e agora eles têm a versão 3.1. "Nossos modelos mais capazes até o momento", lembrando que essa tradução é uma tradução automática.
+
+Então, vamos lá. O que eles estão comentando aqui? Qual é a ideia principal que está acontecendo? A Meta está comprometida com a IA de acesso aberto. Leia a carta de Mark Zuckerberg; aí ele explica, detalhando o código aberto, por que é bom para desenvolvedores, por que é bom para a Meta, e bom para o mundo.
+
+Para você que caiu aqui de paraquedas e não sabe o que é um código aberto: significa que, se você quiser usar o ChatGPT da OpenAI, Gemini da Google, ou quiser usar o Claude da Anthropic, os modelos são fechados. São modelos proprietários, são modelos da própria empresa. A gente não consegue brincar com eles, fazer um ajuste fino, fazer um treinamento personalizado, colocar coisas nossas ali dentro. A gente tem que usar o que a empresa permite.
+
+E aqui, no caso da Meta, está tudo liberado, tanto o modelo quanto os códigos de inferência e para fazer treinamento para fine-tuning também. E eles estão colocando 128K de contexto, ou seja, você consegue enviar um textão gigantesco de 128.000 tokens para esse modelinho aberto em oito idiomas.
+
+Isso significa agora que esse modelo de 405B está batendo de frente com os modelos fechados, porque é a primeira vez que tem um modelão liberado. Em geral, só tem aquele modelo 8B ou modelo 70B. Agora é um modelão 405B.
+
+Eles estão se aliando com um monte de parcerias, tanto com NVIDIA, com o Groq, Databricks, Google Cloud. Eu vou falar disso mais pra frente. Isso significa que muitos desenvolvedores, muitas pessoas que fazem código, que fazem programas com inteligência artificial, vão preferir usar o Llama justamente porque ele é aberto e gratuito.
+
+Uma coisa que é meio chata aqui pra gente que é do Brasil: já vem aqui, ó: "Experimente o Llama 3.1 405B dos Estados Unidos no WhatsApp e no Meta AI fazendo uma pergunta desafiadora de matemática ou codificação". Isso significa que eu já tentei usar esse cara aqui e ele falou assim: "Não está disponível no seu país". Daí eu coloquei VPN para fazer como se fosse um americano, daí abriu a telinha. Na hora que eu fui escrever o texto, simplesmente ele pediu para eu fazer o login com o Facebook ou Instagram, e quando eu fiz, ele de novo falou assim: "Não, você está no Brasil". Aí não teve jeito, mas eu tenho duas soluções para isso que eu vou mostrar no final do vídeo. Então, aguarda aí!
+
+Para vocês terem uma noção da importância do que é isso e para vocês terem uma noção de custo: na versão anterior, o Mark Zuckerberg falou que custava aproximadamente 1 milhão de dólares para você fazer um treinamento. E para você ter uma noção disso, se a gente converter e multiplicar isso por cinco, são R$5 milhões de reais para você fazer um pequeno treinamento de uma rede desse tamanho. Isso porque era o modelo menor. Gente, esse modelo deve ter custado ainda mais caro. Isso significa que as pessoas, as empresas particulares, não vão conseguir fazer modelos desse tamanho.
+
+Uma coisa que está começando a ser falada agora aqui, ó: "Acreditamos que a última geração do Llama irá desencadear novos aplicativos e paradigmas de modelagem, incluindo a geração de dados sintéticos para permitir a melhoria e o treinamento de modelos menores, bem como a destilação de modelos". Isso é uma coisa que começou a ser falada já um tempo atrás e que está virando realidade. Os modelos mais novos, os modelos mais recentes, eles vão usar muito mais dados sintéticos do que dados reais. Ou seja, aquela história de ficar entrando na internet e baixando conteúdo da internet inteira, isso vai mudar. Faz mais sentido você já ter um modelo de Inteligência Artificial que já sabe conversar e ele ensinar outro modelo.
+
+O que eles chamam de destilação de modelos - imagina que você tem um modelo 405B e quer fazer uma destilação para esse modelo para treinar um modelinho um pouquinho menor. Já que seu modelo é um modelo grande e bastante forte, você consegue diminuir ele e fazer esse tipo de estratégia.
+
+Eles comentam que o modelo está disponível para download tanto pelo llama.cpp quanto pela Hugging Face, e você já pode começar a fazer o seu desenvolvimento tanto do modelo de 8B, 70B e 405B. Nas avaliações e nos benchmarks, como sempre, 3.1 8B com o Gemma 2 7B, ou seja, Meta versus Google. Llama 3.1 70B com GPT-3.5 Turbo, e o Llama 3.1 405B com o GPT-4 e o Claude 3.5.
+
+Como vocês podem ver, em alguns momentos, dependendo do teste que eles estão fazendo, por exemplo, MML, o GPT-4 foi melhor. Nesse MML Pro, o Claude 3.5 foi melhor. Porém, essa avaliação do IFEE, o Llama 3.1 foi melhor. E a coisa aqui fica meio disputada. Tem coisas que o GPT-4 faz melhor, tem coisas que o Claude Sonnet faz melhor, e tem coisas que o Llama 3 faz melhor. Então é meio disputado, mas nos modelos menores, parece que ele está dando um pau e parece que ele está indo super bem, ganhando praticamente tudo.
+
+Isso significa tanto na geração de código como na execução de matemática, de raciocínio, do uso de ferramentas e para contextos mais longos, e também nas questões de multilínguas. Isso é o futuro chegando, gente.
+
+E quando a comparação é feita do modelo 3.1 com o modelo anterior, a mesma coisa acontece tanto pro 8B quanto pro 70B. Lembrando que na versão 3 aqui só ia até o 70B, e agora que eles começaram a fazer o modelo gigantesco.
+
+Essa é uma das estrelinhas, é um dos pontos mais fortes desse modelo. É a primeira vez que se lança um modelo tão grande gratuito com 405B. E aqui eu não preciso nem falar nada, né? Ele bateu basicamente todos os quesitos. Não teve nenhum que ele perdeu.
+
+Nessa arquitetura de modelo deles, eles estão usando 15 trilhões de tokens. E para fazer o treinamento, eles usaram mais de 16.000 GPUs H100. Para vocês terem uma noção, gente, essas GPUs H100 são uma das mais poderosas da NVIDIA. E imagina o seguinte, gente: não é uma, não são duas, são 16.000. Ou seja, esse negócio é realmente caro.
+
+Esse esqueminha de arquitetura já falei para vocês algumas vezes. Você primeira coisa que faz: você recebe uma entrada, transforma em tokens, você transforma os tokens em embeddings, faz aqui a rede neural funcionar, e você devolve um token. E você faz esse treinamento aqui até sua rede ficar inteligente e aprender.
+
+E aqui, interessante, ó: por exemplo, eles estão falando que eles só estão fazendo um modelo Transformer padrão. Eles não estão fazendo mistura de experts, mistura de especialistas. E na mistura de especialistas, basicamente você tem várias redes e elas dão respostas diferentes, e você escolhe a resposta melhor. E eles estão falando que aqui é tanto a qualidade quanto a quantidade dos dados, o treinamento, tudo essa infraestrutura foi melhorada.
+
+Uma coisa interessante é que eles estão trabalhando com parceiros, ou seja, tanto a AWS, Databricks, Dell, NVIDIA, Groq, IBM, Google Cloud, Microsoft, Scale e Snowflake. Presta bem atenção, ó: eles têm várias features que eles estão fazendo com o modelo 405B, mas ó, atenção especial aqui pro Databricks e pra NVIDIA. São os dois que têm simplesmente todas as funcionalidades disponíveis, que é:
+
+- Inferência em tempo real, ou seja, fazer chat
+- Inferência em batelada, que significa o seguinte: às vezes você está fazendo uma funcionalidade pra sua empresa ou para algum projeto, e você tem muito dado que você processa todo dia ou que você não precisa processar em tempo real. Você manda um montão de dados para eles, eles processam, por exemplo, de 24 em 24 horas, coisas assim. Eles te devolvem aquele dado processado por um custo muito mais baixo que se fosse em tempo real.
+- Ajuste fino, ou seja, tanto Databricks, Dell, NVIDIA, Scale e Snowflake vão fazer ajuste fino, ou seja, treinar um modelo especialista nos seus dados.
+
+Imagina que você trabalha na área de direito e que você quer fazer uma especialização do seu modelo para algum juízo de direito específico de algum lugar, para você saber que tipo de sentença vai passar ou não vai passar. Você pode sim fazer um ajuste fino com esses dados e fazer um modelo especialista na sua área. Isso vale para direito, isso vale para medicina, contabilidade, todas essas áreas que têm legislação, que têm textão, que têm muita informação específica. Ou para quem faz pesquisa, que tem que ler muito artigo, coisas assim. Vale a pena você fazer um fine-tuning pra sua área específica.
+
+A avaliação do modelo é basicamente uma avaliação para saber se ele está bom ou se ele está ruim. RAG é quando você está trabalhando com arquivos. Ao invés de fazer fine-tuning, você tem a opção de trabalhar com arquivos, enviar arquivos, fazer perguntas sobre aqueles arquivos. Esse aqui basicamente todo mundo faz; o único que não faz é o Groq. Por que que o Groq não faz? Presta atenção agora nesse detalhe: o Groq é focado em desempenho, alto desempenho, rápido, conversas rápidas. Imagina que você precisa fazer uma conversa em tempo real e ela precisa ser rápida, é no Groq que você vai fazer. Esquece o resto, gente. Se você precisa de velocidade, é no Groq. É porque se eu não falar isso, vai parecer que o Groq é o pior de todos, e não é. É porque ele é especialista em velocidade, só isso.
+
+O pré-treino continuado, ou seja, continuar um treino a partir do momento que você terminou outro. Segurança dos modelos: todos eles também vão ter. O único que vai estar com o modelo liberado sem segurança nenhuma... E lembrando que aqui segurança não significa que o modelo não é seguro, mas significa que se você fizer uma pergunta e essa pergunta envolve algum conteúdo sensível, o Groq não vai segurar, ele vai mandar ver, e é isso aí.
+
+A geração de dados sintéticos quase todo mundo faz, e a destilação de modelos também. Você vai encontrar, ou seja, se você tem um modelo 405B e quiser fazer um modelo um pouquinho menor, você consegue fazer utilizando, por exemplo, a AWS, Databricks, NVIDIA, Microsoft e Snowflake.
+
+Isso é importante dizer porque esse é o ponto forte desse modelo. Ele tem essa liberdade de você conseguir "bagunçar" com ele. Daí você me pergunta: "Mas Bob, não faz o menor sentido. Por que, se o modelo é gratuito, por que que eu estou pagando para essas empresas para fazer um fine-tuning? Por que que eu estou pagando para essas empresas para fazer um RAG? Por que que eu tenho que pagar, afinal?" Porque, gente, um modelo de 405B não consegue rodar na máquina aqui, ó, no meu micrinho pessoal aqui. Ele simplesmente não roda. É muita memória que precisa para fazer ele rodar.
+
+Para vocês entenderem, para ficar claro de uma vez por todas: imagina que você está se perguntando agora, "Mas qual modelo que eu vou rodar? O 405B, o 70B ou o 8B?" A resposta rápida e curta e grossa é: provavelmente 8B, que é o que roda nos PCs normais de casa, que têm uma placa de vídeo que é razoável, que pode ser uma placa antiga ou uma placa de vídeo média. Se você não tiver uma boa placa de vídeo, vai demorar demais o processamento.
+
+Por outro lado, se você já tem uma placa muito boa rodando num servidor com 32 GB de RAM, às vezes duas, três, quatro placas, aí a conversa muda e os modelos 70B começam a ser possíveis. Esse modelo de 405B, eu acredito que você só vai rodar na nuvem. Não tem jeito. Você só vai rodar em casa caso você tenha um excelente servidor, estilo aqueles que ficam minerando Bitcoin.
+
+E aqui eles fornecem uma tabelinha de preços. Aqui, ó, isso aqui é do dia 23/07. Como eu falei, o modelo 8B é um dos modelos mais acessíveis. Se você tem uma placa de vídeo boa, você vai rodar na sua casa. Então talvez você nem precise usar esse modelo aqui, 8B. O 70B e 405B eu recomendo usar online.
+
+Se a gente fosse dar uma olhadinha rápida aqui no 405B e a gente fosse encontrar aqui um preço mais baixo, ó, $3. Os preços mais baixos são Octo ML e Fireworks AI. E aqui é $3 tanto para a entrada quanto para a saída. Então o Fireworks AI é o preço mais barato, e o segundo preço mais barato, Octo ML. E no modelinho pequeninho aqui, modelinho 8B, a mesma coisa. Qual a diferença? Que o Octo ML aqui tem um precinho mais barato.
+
+Então fica sempre atento que esses preços variam. Esses preços podem subir, podem baixar. Então se mantenha antenado para saber o que está acontecendo.
+
+Então a solução número um, como eu falei: esses modelos não vão rodar no seu PC. É legal você tentar fazer na nuvem. Então aqui estou no Groq. Eu consigo escolher aqui quais modelos eu vou usar. Eu vou colocar aqui, ó, meu Llama 3.1. Tem tanto 405B, 70B quanto 8B. Vou colocar aqui o 405B. Eu vou mandar um "oi, tudo bem?". Aqui, ó, o "Oi, tudo bem? Manda um alô para o pessoal do canal Inteligência 1000 Grau. É o Bob falando." E olha aqui o que ele falou assim, ó: "Esse modelo está com uma alta demanda. Por favor, volte amanhã." E aqui ele falou: "Serviço está atualmente indisponível". Mas talvez no momento que você está assistindo aí, isso aqui já esteja disponível. Então testa aí!
+
+Segunda alternativa: Vamos ver se agora vai. Mesma coisa, estamos aqui no Perplexity. Mesma coisa, já selecionei aqui meu modelo, ó. Posso colocar aqui "More" e posso escolher, ó, Llama 3.1 70B, 70B, 3.1 405B. Vamos lá: "Oi, tudo bem? Manda um alô pro pessoal do canal Inteligência 1000 Grau. É o Bob falando." Vamos ver, vamos ver, vamos ver. Opa! Aqui já recebemos uma resposta, gente. Fechou! Maravilha!
+
+Isso significa, gente, que tem que ficar bem atento nessas questões.
+
+"Crie o jogo da cobrinha em HTML." Vamos ver, vamos ver, vamos ver, vamos ver, vamos ver. Isso aqui, ó, se tudo der certo, a gente vai conseguir jogar inclusive. Vamos lá, vamos ver, vamos ver. Ó lá, está gerando aqui o código, está gerando aqui o jogo. Gerou, terminou de gerar. Vamos ver se vai aparecer o jogo da cobrinha aqui. Não apareceu o preview, mas o código está bem certinho. O joguinho está bem feitinho aqui. Você pode testar na casa de vocês.
+
+Ou seja, nós já temos uma alternativa. Mesmo que você não consiga rodar na tua casa, você já tem uma alternativa. Eu, gente, eu espero que vocês estejam ficado bastante felizes com esse Llama 3. Como vocês podem ver, as opções de Inteligência Artificial estão cada vez mais abertas. Hoje a gente já tem um GPT-4 funcionando maravilhosamente bem, tem um Claude Sonnet 3.5 funcionando maravilhosamente bem. E agora nós temos uma opção gratuita de um modelo gigantesco que pode ter certeza que vão ter muitos modelos e muitas infraestruturas gratuitas baseadas em cima dele.
+
+Se você quiser apoiar o canal para que a gente continue fazendo conteúdos como esse, seja membro. Os membros têm acesso a um grupo do WhatsApp e vídeos antecipados. Deixa seu like. Valeu!

@@ -1,0 +1,120 @@
+1. P: Qual é o novo modelo de IA lançado pela Meta?  
+   R: O novo modelo lançado pela Meta é o Llama 3.1.  
+***  
+2. P: Quantos parâmetros tem o maior modelo Llama 3.1?  
+   R: O maior modelo Llama 3.1 tem 405 bilhões de parâmetros.  
+***  
+3. P: Quais são as outras versões do Llama 3.1 mencionadas no texto?  
+   R: São mencionadas as versões de 70B e 8 bilhões de parâmetros.  
+***  
+4. P: O que significa o termo "código aberto" no contexto do Llama 3.1?  
+   R: Significa que o modelo e os códigos de inferência estão liberados para uso, ajuste fino e treinamento personalizado.  
+***  
+5. P: Qual é o tamanho do contexto do Llama 3.1?  
+   R: O Llama 3.1 tem um contexto de 128K, ou seja, 128.000 tokens.  
+***  
+6. P: Em quantos idiomas o Llama 3.1 está disponível?  
+   R: O texto menciona que o modelo está disponível em oito idiomas.  
+***  
+7. P: Por que o lançamento do Llama 3.1 405B é considerado significativo?  
+   R: Porque é a primeira vez que um modelo tão grande é liberado gratuitamente.  
+***  
+8. P: Qual era o custo aproximado para treinar a versão anterior do Llama, segundo Mark Zuckerberg?  
+   R: Segundo Mark Zuckerberg, custava aproximadamente 1 milhão de dólares.  
+***  
+9. P: O que são "dados sintéticos" no contexto do treinamento de IA?  
+   R: São dados gerados por modelos de IA existentes, em vez de coletados da internet.  
+***  
+10. P: O que é "destilação de modelos"?  
+    R: É o processo de criar um modelo menor a partir de um modelo maior, mantendo grande parte do desempenho.  
+***  
+11. P: Onde o Llama 3.1 está disponível para download?  
+    R: O Llama 3.1 está disponível para download pelo llama.cpp e pela Hugging Face.  
+***  
+12. P: Com quais outros modelos o Llama 3.1 é comparado nos benchmarks?  
+    R: É comparado com Gemma 2, GPT-3.5 Turbo, GPT-4 e Claude 3.5.  
+***  
+13. P: Quantas GPUs H100 foram usadas para treinar o Llama 3.1?  
+    R: Foram usadas mais de 16.000 GPUs H100 para treinar o Llama 3.1.  
+***  
+14. P: O Llama 3.1 utiliza a técnica de "mistura de especialistas"?  
+    R: Não, o texto menciona que eles estão usando apenas um modelo Transformer padrão.  
+***  
+15. P: Quais são algumas das empresas parceiras mencionadas para o Llama 3.1?  
+    R: São mencionadas AWS, Databricks, Dell, NVIDIA, Groq, IBM, Google Cloud, Microsoft, Scale e Snowflake.  
+***  
+16. P: O que é "inferência em batelada"?  
+    R: É o processamento de grandes quantidades de dados de uma vez, geralmente com menor custo que em tempo real.  
+***  
+17. P: Por que o ajuste fino (fine-tuning) pode ser útil para áreas específicas como direito ou medicina?  
+    R: Porque permite criar um modelo especializado com conhecimentos específicos da área.  
+***  
+18. P: Qual é a especialidade do Groq em relação aos outros parceiros?  
+    R: O Groq é especializado em alto desempenho e conversas rápidas em tempo real.  
+***  
+19. P: Por que a maioria das pessoas provavelmente usará o modelo de 8B em casa?  
+    R: Porque é o modelo que consegue rodar em PCs normais com placas de vídeo razoáveis.  
+***  
+20. P: Que tipo de hardware seria necessário para rodar o modelo de 405B em casa?  
+    R: Seria necessário um excelente servidor, comparável aos usados para minerar Bitcoin.  
+***  
+21. P: Quais são as duas empresas mencionadas com os preços mais baixos para uso do modelo 405B?  
+    R: Octo ML e Fireworks AI são mencionadas como as mais baratas.  
+***  
+22. P: Por que o modelo não está disponível diretamente no Brasil?  
+    R: O texto menciona que ao tentar acessar, aparece a mensagem "Não está disponível no seu país".  
+***  
+23. P: Que solução o autor sugere para acessar o modelo fora dos EUA?  
+    R: O autor sugere usar uma VPN para simular acesso dos Estados Unidos.  
+***  
+24. P: O que acontece quando o autor tenta acessar o modelo via Groq?  
+    R: O sistema informa que o modelo está com alta demanda e pede para tentar novamente mais tarde.  
+***  
+25. P: Qual plataforma o autor consegue usar para testar o Llama 3.1?  
+    R: O autor consegue usar o Perplexity para testar o modelo.  
+***  
+26. P: Que tipo de teste o autor faz para demonstrar o funcionamento do modelo?  
+    R: O autor pede para o modelo criar um jogo da cobrinha em HTML.  
+***  
+27. P: O que são "embeddings" no contexto de modelos de linguagem?  
+    R: São representações numéricas de tokens de entrada que a rede neural usa para processamento.  
+***  
+28. P: Qual é a vantagem de usar o Llama 3.1 em comparação com modelos fechados como GPT ou Claude?  
+    R: A vantagem é que o Llama 3.1 é aberto e gratuito, permitindo mais liberdade para desenvolvedores.  
+***  
+29. P: Quantos trilhões de tokens foram usados no treinamento do Llama 3.1?  
+    R: Foram usados 15 trilhões de tokens no treinamento.  
+***  
+30. P: O que é RAG no contexto de modelos de linguagem?  
+    R: RAG significa Retrieval-Augmented Generation, que permite trabalhar com arquivos externos para responder perguntas.  
+***  
+31. P: Por que o autor diz que o futuro dos modelos de IA envolverá mais dados sintéticos?  
+    R: Porque é mais eficiente usar modelos existentes para gerar dados do que coletar da internet.  
+***  
+32. P: Qual é a principal diferença entre o Llama 3 e o Llama 3.1?  
+    R: O Llama 3.1 inclui o modelo de 405B, que não existia na versão 3.  
+***  
+33. P: O que significa quando o autor diz que o modelo "bateu basicamente todos os quesitos"?  
+    R: Significa que o Llama 3.1 superou ou igualou outros modelos em quase todas as métricas de avaliação.  
+***  
+34. P: Por que é importante a parceria com empresas como AWS e Databricks?  
+    R: Porque essas empresas fornecem a infraestrutura necessária para rodar e ajustar os modelos grandes.  
+***  
+35. P: O que é "pré-treino continuado"?  
+    R: É a capacidade de continuar treinando um modelo a partir do ponto onde ele parou anteriormente.  
+***  
+36. P: Por que o autor menciona que o Groq não tem "segurança" no modelo?  
+    R: Porque o Groq não filtra conteúdos sensíveis, respondendo a todas as perguntas sem restrições.  
+***  
+37. P: Qual é a recomendação do autor para quem quer usar os modelos 70B e 405B?  
+    R: O autor recomenda usar esses modelos online, em serviços de nuvem.  
+***  
+38. P: O que o autor sugere para apoiar o canal de conteúdo?  
+    R: O autor sugere que os espectadores se tornem membros do canal.  
+***  
+39. P: Que benefícios os membros do canal recebem?  
+    R: Os membros têm acesso a um grupo do WhatsApp e vídeos antecipados.  
+***  
+40. P: Como o autor vê o futuro da IA com o lançamento do Llama 3.1?  
+    R: O autor vê um futuro com mais opções abertas e gratuitas, com muitas infraestruturas baseadas no Llama 3.1.  
+
