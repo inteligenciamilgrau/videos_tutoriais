@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentes IMG²</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+        }
+        .menu, .details {
+            width: 20%;
+            background-color: #f0f0f0;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .main-area {
+            width: 60%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+        .menu-item {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            cursor: move;
+        }
+        .dropped-item {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            cursor: move;
+        }
+        .remove-btn {
+            margin-left: 5px;
+            color: red;
+            cursor: pointer;
+        }
+        #newItemForm, #editForm, #renameForm {
+            margin-bottom: 20px;
+        }
+        #newItemInput, #editInput, #renameInput {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        #editForm, #renameForm {
+            display: none;
+        }
+        #playArea {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+        }
+        .play-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .gpt-response {
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        .action-buttons {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .action-buttons button {
+            margin-right: 10px;
+        }
+        .api-key-form {
+            margin-bottom: 20px;
+        }
+
+        .api-key-form input {
+            width: 100%;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu" id="menu">
+        <h2>Menu</h2>
+        <div id="menuItems">
+            <div class="menu-item" draggable="true">Gerente</div>
+            <div class="menu-item" draggable="true">Pesquisador</div>
+            <div class="menu-item" draggable="true">Escritor</div>
+            <div class="menu-item" draggable="true">Publicador</div>
+        </div>
+    </div>
+    
+    <div class="main-area" id="mainArea">
+        <b>Esta é um protótipo para testes, não coloque informações confidenciais e não esqueça de remover as api-keys testadas após os testes</b>
+        <form id="newItemForm">
+            <input type="text" id="newItemInput" placeholder="Nome do novo item">
+            <button type="submit">Adicionar novo item</button>
+        </form>
+        <div class="action-buttons">
+            <button id="saveButton">Salvar Configuração</button>
+            <button id="loadButton">Carregar Configuração</button>
+        </div>
+        <div class="api-key-form">
+            <input type="password" id="apiKeyInput" placeholder="Insira sua API-KEY">
+        </div>
+        <h2>Área Principal</h2>
+        <div id="droppedItems"></div>
+        <button id="playButton">Play</button>
+        <div id="playArea"></div>
+    </div>
+    
+    <div class="details" id="details">
+        <h2>Detalhes</h2>
+        <p id="itemDetails"></p>
+        <button id="editButton">Editar detalhes</button>
+        <button id="renameButton">Renomear</button>
+        <form id="editForm">
+            <textarea id="editInput" rows="4"></textarea>
+            <button type="submit">Salvar</button>
+        </form>
+        <form id="renameForm">
+            <input type="text" id="renameInput" placeholder="Novo nome">
+            <button type="submit">Salvar nome</button>
+        </form>
+    </div>
+    <script>
+        const menu = document.getElementById('menu');
+        const menuItems = document.getElementById('menuItems');
+        const mainArea = document.getElementById('mainArea');
+        const droppedItems = document.getElementById('droppedItems');
+        const itemDetails = document.getElementById('itemDetails');
+        const newItemForm = document.getElementById('newItemForm');
+        const newItemInput = document.getElementById('newItemInput');
+        const editButton = document.getElementById('editButton');
+        const editForm = document.getElementById('editForm');
+        const editInput = document.getElementById('editInput');
+        const renameButton = document.getElementById('renameButton');
+        const renameForm = document.getElementById('renameForm');
+        const renameInput = document.getElementById('renameInput');
+        const playButton = document.getElementById('playButton');
+        const playArea = document.getElementById('playArea');
+        const saveButton = document.getElementById('saveButton');
+        const loadButton = document.getElementById('loadButton');
+        const apiKeyInput = document.getElementById('apiKeyInput');
+
+        let selectedItem = null;
+        let dragSrcEl = null;
+        let apiKey = '';
+
+        function createMenuItem(text) {
+            const newItem = document.createElement('div');
+            newItem.className = 'menu-item';
+            newItem.draggable = true;
+            newItem.textContent = text;
+            newItem.addEventListener('dragstart', function(e) {
+                e.dataTransfer.setData('text/plain', text);
+            });
+            return newItem;
+        }
+        newItemForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const newItemName = newItemInput.value.trim();
+            if (newItemName) {
+                const newItem = createMenuItem(newItemName);
+                menuItems.appendChild(newItem);
+                newItemInput.value = '';
+            }
+        });
+
+        mainArea.addEventListener('dragover', function(e) {
+            e.preventDefault();
+        });
+
+        mainArea.addEventListener('drop', function(e) {
+            e.preventDefault();
+            const data = e.dataTransfer.getData('text');
+            const newItem = createDroppedItem(data);
+            droppedItems.appendChild(newItem);
+        });
+
+        function createDroppedItem(data) {
+            const newItem = document.createElement('div');
+            newItem.className = 'dropped-item';
+            newItem.textContent = data;
+            newItem.details = `Fale uma palavra sobre: "${data}". `;
+            newItem.originalDetails = newItem.details;
+            newItem.draggable = true;
+            
+            const removeBtn = document.createElement('span');
+            removeBtn.textContent = ' ×';
+            removeBtn.className = 'remove-btn';
+            removeBtn.onclick = function(event) {
+                event.stopPropagation();
+                droppedItems.removeChild(newItem);
+                itemDetails.textContent = '';
+                editButton.style.display = 'none';
+                editForm.style.display = 'none';
+                renameButton.style.display = 'none';
+                renameForm.style.display = 'none';
+                selectedItem = null;
+            };
+            
+            newItem.appendChild(removeBtn);
+            newItem.onclick = function() {
+                selectedItem = newItem;
+                itemDetails.textContent = newItem.details;
+                editButton.style.display = 'block';
+                renameButton.style.display = 'block';
+                editForm.style.display = 'none';
+                renameForm.style.display = 'none';
+            };
+
+            newItem.addEventListener('dragstart', dragStart);
+            newItem.addEventListener('dragover', dragOver);
+            newItem.addEventListener('drop', drop);
+            newItem.addEventListener('dragend', dragEnd);
+            
+            return newItem;
+        }
+
+        function dragStart(e) {
+            this.style.opacity = '0.4';
+            dragSrcEl = this;
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/html', this.innerHTML);
+        }
+
+        function dragOver(e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            return false;
+        }
+
+        function drop(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            if (dragSrcEl !== this) {
+                dragSrcEl.innerHTML = this.innerHTML;
+                this.innerHTML = e.dataTransfer.getData('text/html');
+                let tempDetails = dragSrcEl.details;
+                let tempOriginalDetails = dragSrcEl.originalDetails;
+                dragSrcEl.details = this.details;
+                dragSrcEl.originalDetails = this.originalDetails;
+                this.details = tempDetails;
+                this.originalDetails = tempOriginalDetails;
+                
+                updateEventListeners(dragSrcEl);
+                updateEventListeners(this);
+                
+                if (selectedItem === dragSrcEl) {
+                    selectedItem = this;
+                    itemDetails.textContent = this.details;
+                } else if (selectedItem === this) {
+                    selectedItem = dragSrcEl;
+                    itemDetails.textContent = dragSrcEl.details;
+                }
+            }
+            
+            return false;
+        }
+
+        function dragEnd() {
+            this.style.opacity = '1';
+        }
+
+        function updateEventListeners(item) {
+            item.onclick = function() {
+                selectedItem = item;
+                itemDetails.textContent = item.details;
+                editButton.style.display = 'block';
+                renameButton.style.display = 'block';
+                editForm.style.display = 'none';
+                renameForm.style.display = 'none';
+            };
+            
+            item.querySelector('.remove-btn').onclick = function(event) {
+                event.stopPropagation();
+                droppedItems.removeChild(item);
+                itemDetails.textContent = '';
+                editButton.style.display = 'none';
+                editForm.style.display = 'none';
+                renameButton.style.display = 'none';
+                renameForm.style.display = 'none';
+                selectedItem = null;
+            };
+        }
+
+        editButton.addEventListener('click', function() {
+            if (selectedItem) {
+                editInput.value = selectedItem.details;
+                editForm.style.display = 'block';
+                renameForm.style.display = 'none';
+                editButton.style.display = 'none';
+                renameButton.style.display = 'none';
+            }
+        });
+
+        editForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (selectedItem) {
+                selectedItem.details = editInput.value;
+                selectedItem.originalDetails = editInput.value;
+                itemDetails.textContent = selectedItem.details;
+                editForm.style.display = 'none';
+                editButton.style.display = 'block';
+                renameButton.style.display = 'block';
+            }
+        });
+
+        renameButton.addEventListener('click', function() {
+            if (selectedItem) {
+                renameInput.value = selectedItem.textContent.replace('×', '').trim();
+                renameForm.style.display = 'block';
+                editForm.style.display = 'none';
+                editButton.style.display = 'none';
+                renameButton.style.display = 'none';
+            }
+        });
+
+        renameForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (selectedItem) {
+                const newName = renameInput.value.trim();
+                if (newName) {
+                    selectedItem.textContent = newName;
+                    selectedItem.appendChild(selectedItem.querySelector('.remove-btn'));
+                    selectedItem.details = selectedItem.details.replace(/dentro do\(a\) "[^"]+"/,
+                                                                       `dentro do(a) "${newName}"`);
+                    selectedItem.originalDetails = selectedItem.originalDetails.replace(/dentro do\(a\) "[^"]+"/,
+                                                                                        `dentro do(a) "${newName}"`);
+                    itemDetails.textContent = selectedItem.details;
+                    renameForm.style.display = 'none';
+                    editButton.style.display = 'block';
+                    renameButton.style.display = 'block';
+                }
+            }
+        });
+
+        playButton.addEventListener('click', async function() {
+            const items = droppedItems.querySelectorAll('.dropped-item');
+            playArea.innerHTML = '';
+            
+            let previousResponse = '';
+
+            for (let i = 0; i < items.length; i++) {
+                const item = items[i];
+                const playItem = document.createElement('div');
+                playItem.className = 'play-item';
+                
+                let prompt = item.originalDetails; // Use originalDetails instead of details
+                if (previousResponse) {
+                    prompt += ` Considere que a resposta anterior foi: "${previousResponse}".`;
+                }
+                const itemContent = document.createElement('p');
+                itemContent.textContent = `${item.textContent.replace('×', '')}: ${prompt}`;
+                playItem.appendChild(itemContent);
+                
+                const gptResponse = document.createElement('div');
+                gptResponse.className = 'gpt-response';
+                gptResponse.textContent = 'Consultando GPT-4...';
+                playItem.appendChild(gptResponse);
+                
+                playArea.appendChild(playItem);
+                try {
+                    const response = await fetchGPT4Response(prompt);
+                    gptResponse.textContent = response;
+                    previousResponse = response;
+                } catch (error) {
+                    gptResponse.textContent = 'Erro ao consultar GPT-4: ' + error.message;
+                    previousResponse = '';
+                }
+            }
+            
+            if (items.length === 0) {
+                playArea.textContent = 'Nenhum item para reproduzir.';
+            }
+        });
+
+        async function fetchGPT4Response(prompt) {
+            // Salve a API-KEY no localStorage
+            localStorage.setItem('apiKey', apiKey);
+            const API_URL = 'https://api.openai.com/v1/chat/completions';
+
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`
+                },
+                body: JSON.stringify({
+                    model: "gpt-4o-mini",
+                    temperature: 1.5,
+                    messages: [
+                        {role: "system", content: "Você é um assistente útil que responde perguntas sobre ambientes e objetos."},
+                        {role: "user", content: prompt}
+                    ],
+                    max_tokens: 16_384
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            return data.choices[0].message.content.trim();
+        }
+
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('dragstart', function(e) {
+                e.dataTransfer.setData('text/plain', item.textContent);
+            });
+        });
+
+        saveButton.addEventListener('click', saveConfiguration);
+        loadButton.addEventListener('click', loadConfiguration);
+
+        function saveConfiguration() {
+            const items = Array.from(droppedItems.querySelectorAll('.dropped-item')).map(item => ({
+                text: item.textContent.replace('×', '').trim(),
+                details: item.details,
+                originalDetails: item.originalDetails
+            }));
+            
+            localStorage.setItem('savedConfiguration', JSON.stringify(items));
+            //alert('Configuração salva com sucesso!');
+        }
+
+        function loadConfiguration() {
+            const savedConfig = localStorage.getItem('savedConfiguration');
+            if (savedConfig) {
+                const items = JSON.parse(savedConfig);
+                droppedItems.innerHTML = '';
+                items.forEach(item => {
+                    const newItem = createDroppedItem(item.text);
+                    newItem.details = item.details;
+                    newItem.originalDetails = item.originalDetails;
+                    droppedItems.appendChild(newItem);
+                });
+                //alert('Configuração carregada com sucesso!');
+            } else {
+                alert('Nenhuma configuração salva encontrada.');
+            }
+        }
+
+        apiKeyInput.addEventListener('blur', function() {
+            const newApiKey = apiKeyInput.value.trim();
+            if (newApiKey && newApiKey !== apiKey) {
+                apiKey = newApiKey;
+                //alert('API-KEY atualizada com sucesso!');
+            } else if (!newApiKey) {
+                alert('Por favor, insira uma API-KEY válida.');
+            }
+        });
+
+        // Adicione esta função para carregar a API-KEY salva quando a página for carregada
+        function loadApiKey() {
+            const savedApiKey = localStorage.getItem('apiKey');
+            if (savedApiKey) {
+                apiKey = savedApiKey;
+                apiKeyInput.value = savedApiKey;
+            }
+        }
+
+        
+
+        // Chame esta função quando a página for carregada
+        document.addEventListener('DOMContentLoaded', loadApiKey);
+    </script>
+</body>
+</html>
