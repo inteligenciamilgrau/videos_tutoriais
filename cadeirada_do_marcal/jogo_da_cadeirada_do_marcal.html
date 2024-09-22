@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Cadeirada do Marçal</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        #gameCanvas {
+            border: 2px solid #000;
+            background-color: #fff;
+        }
+        #gameMessage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas" width="400" height="600"></canvas>
+    <div id="gameMessage"></div>
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const gameMessageElement = document.getElementById('gameMessage');
+
+        const marcalWidth = 100;
+        const marcalHeight = 100;
+        let marcalX = canvas.width / 2 - marcalWidth / 2;
+        const marcalY = canvas.height - marcalHeight - 10;
+
+        const chairWidth = 80;
+        const chairHeight = 80;
+        let chairX = Math.random() * (canvas.width - chairWidth);
+        let chairY = -chairHeight;
+
+        let score = 25;
+        let chairSpeed = 4;
+
+        const marcalLeftImg = new Image();
+        marcalLeftImg.src = 'marcal-left.png';
+        const marcalRightImg = new Image();
+        marcalRightImg.src = 'marcal-right.png';
+        const hitImg = new Image();
+        hitImg.src = 'hit.png';
+
+        const chairImgs = [
+            'chair1.png',
+            'chair2.png',
+            'chair3.png',
+            'chair4.png'
+        ];
+        let currentChairImg = 0;
+
+        let lastTime = 0;
+        const rotationInterval = 500;
+
+        let gameOver = false;
+        let keys = {};
+        let showHit = false;
+        let hitTimer = 0;
+
+        document.addEventListener('keydown', (e) => {
+            keys[e.key] = true;
+        });
+
+        document.addEventListener('keyup', (e) => {
+            keys[e.key] = false;
+        });
+
+        function gameLoop(currentTime) {
+            if (gameOver) return;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw score at the top
+            ctx.font = '20px Arial';
+            ctx.fillStyle = 'black';
+            ctx.textAlign = 'center';
+            ctx.fillText(`Aprovação: ${score}%`, canvas.width / 2, 30);
+
+            // Move Marçal
+            if (keys['ArrowLeft'] && marcalX > -marcalWidth/2) {
+                marcalX -= 5;
+            }
+            if (keys['ArrowRight'] && marcalX < canvas.width - marcalWidth/2) {
+                marcalX += 5;
+            }
+
+            // Draw Marçal
+            ctx.drawImage(keys['ArrowRight'] ? marcalRightImg : marcalLeftImg, marcalX, marcalY, marcalWidth, marcalHeight);
+
+            // Draw chair
+            if (currentTime - lastTime > rotationInterval) {
+                currentChairImg = (currentChairImg + 1) % chairImgs.length;
+                lastTime = currentTime;
+            }
+            const chairImg = new Image();
+            chairImg.src = chairImgs[currentChairImg];
+            ctx.drawImage(chairImg, chairX, chairY, chairWidth, chairHeight);
+
+            // Move chair
+            chairY += chairSpeed;
+
+            // Check collision
+            if (
+                chairY + chairHeight/2 > marcalY &&
+                chairY < marcalY + marcalHeight/2 &&
+                chairX + chairWidth/2 > marcalX &&
+                chairX < marcalX + marcalWidth/2
+            ) {
+                score = Math.max(0, score - 1);
+                showHit = true;
+                hitTimer = currentTime;
+                resetChair();
+            }
+
+            // Show hit effect
+            if (showHit && currentTime - hitTimer < 1000) {
+                ctx.drawImage(hitImg, marcalX, marcalY, marcalWidth, marcalHeight);
+            } else {
+                showHit = false;
+            }
+
+            // Chair passed Marçal
+            if (chairY > canvas.height) {
+                score = Math.min(100, score + 1);
+                resetChair();
+                chairSpeed += 0.1;
+            }
+
+            // Check game over or victory
+            if (score <= 0) {
+                endGame("Game Over! Marçal perdeu a eleição.");
+            } else if (score >= 51) {
+                endGame("Parabéns! Marçal ganhou a eleição!");
+            } else {
+                requestAnimationFrame(gameLoop);
+            }
+        }
+
+        function resetChair() {
+            chairY = -chairHeight;
+            chairX = Math.random() * (canvas.width - chairWidth);
+        }
+
+        function endGame(message) {
+            gameOver = true;
+            gameMessageElement.textContent = message;
+            gameMessageElement.style.display = 'block';
+        }
+
+        gameLoop();
+    </script>
+</body>
+</html>
