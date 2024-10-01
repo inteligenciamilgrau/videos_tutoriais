@@ -1,0 +1,276 @@
+Pergunta 1:
+
+Um pessoa entra em uma loja e a seguinte conversa
+ocorre com o vendedor
+
+— Quanto custa 3? — Pergunta o cliente.
+— 400 reais — responde o lojista.
+— E quanto custa 100? — Pergunta o cliente.
+— 300 reais — responde o lojista.
+— E quanto custa 13? — Pergunta o cliente. 
+— 500 reais — o lojista responde.
+
+"Está bem, eu vou levar 22", diz o cliente.
+"São 1000 reais ", diz o lojista.
+
+O que é vendido nesta loja?
+
+Resposta
+
+A loja vende letras (ou rótulos com letras). Cada letra
+de cada palavra custa 100 pesos.
+
+-----
+
+Pergunta 2:
+
+original
+
+Duas crianças, confusas com os dias da semana, 
+fizeram uma pausa em seu caminho para a escola para esclarecer as coisas.
+Priscila disse:
+"Quando o dia depois de amanhã for ontem,
+então o "hoje" estará tão distante de domingo
+tanto quanto o "hoje" de quando anteontem era amanhã".
+Em que dia da semana essa conversa misteriosa ocorreu?
+
+Resposta - Domingo
+
+** Alternativa 1
+
+Cinco amigos foram à casa de Miguelito. O pai de
+Miguelito queria convidar os seis para comer maçãs, mas
+percebeu que só havia cinco frutas. O que fazer? Como
+não queria deixar ninguém triste, teria que repartir igual
+entre todos. É claro que devemos cortar as maçãs. Mas
+cortá-los em pedaços muito pequenos não seria bom; o pai
+não queria que as maçãs fossem cortadas em mais de três
+partes. Assim, levantou o seguinte problema: distribuir
+cinco maçãs, em partes iguais, entre seis crianças, de
+modo que nenhuma maçã seja cortada em mais de três
+partes.
+Como o pai de Miguelito resolveu esse problema?
+
+Resposta três dividas em 2, e duas divididas em 3
+
+** Alternativa 2
+
+Coloquei um copo em cima da mesa.
+E coloquei um dado dentro do copo.
+Virei o copo de cabeça para baixo.
+Peguei o copo e levei ele para cima do fogão.
+Onde está o dado?
+
+Resposta: em cima da mesa
+
+-----
+
+pergunta 3:
+
+Resolva a próxima operação na qual os números
+foram substituídos por letras:
+ABCDE x 4 = EDCBA
+Cada número é representado sempre pela mesma letra
+e letras diferentes representam números diferentes.
+
+resposta
+
+A = 2
+B = 1
+C = 9
+D = 7
+E = 8
+
+----
+
+Pergunta 4
+
+Cinco pessoas cavam um buraco de 5 metros em cinco
+horas. Quantas pessoas serão necessárias para cavar
+um buraco de 100 metros em 100 horas?
+
+5 pessoas cavam 1 m em 1 hora
+5 pessoas cavam 100 m em 100 horas
+
+------
+
+Pergunta 5
+
+programe o jogo flappy bird - cobrinha - tetris
+
+
+-----------
+
+Pergunta 6
+
+Fuvest 2023 prova V
+
+80 - Resposta D
+
+O processo de transporte de O2 para a respiração pode ser
+entendido como um processo de equilíbrio químico entre a
+hemoglobina (Hb) e o O2. A Hb é uma proteína do sangue
+responsável pelo transporte do O2 que também pode existir
+na forma protonada como HbH+. Dependendo da
+concentração de CO2, podem ocorrer a alcalose ou a acidose
+respiratória. A ligação do oxigênio com a HbH+ gera a forma
+oxigenada (HbO2), como pode ser representado pela equação
+química simplificada:
+
+HbH+(aq) + O2(g) ⇌ HbO2(aq) + H+(aq)
+
+O dióxido de carbono liberado na respiração pode alterar esse
+equilíbrio devido à formação de ácido carbônico,representado pela equação:
+
+CO2(g) + H2O(l) ⇌ H+(aq) + HCO3−(aq)
+
+Com base nessas informações, é correto afirmar:
+
+(A) Nos pulmões, onde a concentração de oxigênio é mais
+elevada, a forma de hemoglobina favorecida é a
+protonada.
+(B) Nos tecidos humanos, onde é consumido O2 pelo
+metabolismo, a forma de hemoglobina favorecida é a
+HbO2.
+(C) Quando uma pessoa expira mais depressa que o normal, a
+concentração de dióxido de carbono no seu sangue
+diminui e, nessas situações, a forma de hemoglobina
+favorecida é a forma protonada.
+(D) Nos tecidos humanos, onde é liberado dióxido de carbono
+produzido pelo metabolismo, a forma de hemoglobina
+favorecida é a forma protonada.
+(E) Nos tecidos humanos, onde é liberado dióxido de carbono
+produzido pelo metabolismo, a forma de hemoglobina
+favorecida é a HbO2. 
+
+-----
+
+Pergunta 7
+
+fuvest 2024 prova V
+
+24 - Resposta B
+“Os experimentos de difração e interferência da luz realizados
+no período de 1800 a 1803, em analogia com os processos de
+interferência das ondas acústicas, corroboraram a natureza
+ondulatória da luz. Por outro lado, Einstein introduziu, em
+1905, o conceito de fóton, em que cada componente
+monocromática de frequência 𝑓 da radiação seria equivalente
+a um sistema de partículas idênticas sem massa, cada qual
+com energia ℎ𝑓, sendo ℎ≃6,626×10−34 J.s a constante de
+Planck. A hipótese da existência de fótons só teve ampla
+aceitação após os experimentos de Compton, em 1922, sobre
+o espalhamento da radiação eletromagnética na faixa dos
+raios X por alvos de elementos leves, como o grafite.”
+Adaptado de F. Caruso e V. Oguri, Sobre a necessidade do conceito de fóton,
+RBEF 43, e20210011 (2021).
+De acordo com o texto e seus conhecimentos, é correto
+afirmar:
+(A) A radiação eletromagnética apresenta somente
+comportamento ondulatório.
+(B) Os experimentos de Compton mostraram que feixes de
+raios X exibem comportamento corpuscular.
+(C) A energia de um fóton independe de seu comprimento de
+onda.
+(D) A hipótese da natureza corpuscular da radiação está em
+desacordo com os resultados experimentais.
+(E) Einstein demonstrou que os experimentos de difração e
+interferência da luz deveriam estar incorretos. 
+
+----
+
+Pergunta 8
+
+29 - Resposta B
+
+Fogareiros abastecidos com pequenos botijões de gás são
+equipamentos corriqueiros em trilhas e escaladas de duração
+prolongada para possibilitar o cozimento de alimentos. Em
+geral, esses botijões são abastecidos com propano, isobutano
+ou n-butano. A tabela mostra a temperatura de ebulição e o
+calor liberado na combustão desses três gases, à pressão
+atmosférica.
+
+tabela:
+Elemento | Temperatura de ebulição(°C) | Calor liberado na combustão (kcal/m3 de substância na fase gasosa)
+Propano   | −42 | 5065
+Isobutano | −12 | 8211
+n-Butano  |  −1 | 8411
+
+Com base nessas informações, qual seria o gás mais indicado
+para a utilização em um ambiente com temperatura típica de
+−6 °C, considerando a viabilidade e o consumo de gás
+necessário para o preparo de alimentos?
+(A) Propano, por estar líquido em −6 °C e, dentre as
+substâncias líquidas nessa temperatura, sua combustão
+fornecer mais calor por volume de gás.
+(B) Isobutano, por estar gasoso em −6 °C e, dentre as
+substâncias gasosas nessa temperatura, sua combustão
+fornecer mais calor por volume de gás.
+(C) n-Butano, por estar gasoso em −6 °C e, dentre as
+substâncias gasosas nessa temperatura, sua combustão
+fornecer mais calor por volume de gás.
+(D) n-Butano, por estar líquido em −6 °C e, dentre as
+substâncias gasosas nessa temperatura, sua combustão
+fornecer menos calor por volume de gás.
+(E) Isobutano, por estar gasoso em −6 °C e, dentre as
+substâncias gasosas nessa temperatura, sua combustão
+fornecer menos calor por volume de gás.
+
+-----
+
+Pergunta 9
+
+33 - Resposta A
+
+Uma empresa farmacêutica produz certo medicamento, o
+qual é formado por quatro componentes, conforme indicado
+na tabela I. O custo do grama de cada um dos componentes
+desse medicamento também é apresentado nessa tabela.
+
+Tabela I
+Composição do medicamento | Quantidade (em mg) | Custo(em R$/g)
+Componente A | 200 | 700
+Componente B |  70 | 500
+Componente C | 130 | 300
+Componente D | 100 | 120
+
+Para a produção do próximo lote do medicamento, a empresa
+terá um gasto diferente para fabricá-lo, pois os custos de
+alguns componentes sofreram alterações, conforme mostra a
+tabela II.
+
+Tabela II
+Composição do medicamento | Variação no custo (em %)
+Componente A | +7
+Componente B | −5
+Componente C | 0
+Componente D | +10
+
+Qual é o aumento, em reais, no custo do medicamento?
+(A) 9,25
+(B) 12,00
+(C) 12,75
+(D) 36,00
+(E) 86,00
+
+-----
+
+Pergunta 10
+
+34 - Resposta A
+
+Os conceitos de moda, mediana, média e amplitude definem
+medidas utilizadas para estudar um conjunto de informações
+numéricas. Por exemplo, na lista de 5 números (2, 2, 4, 8, 14),
+temos que a moda é igual a 2, a mediana é igual a 4, a média
+é igual 6 e a amplitude é igual a 12.
+Assinale a alternativa que representa a quantidade de listas
+de 5 números inteiros positivos que cumprem a condição:
+moda = mediana = média = amplitude = 23.
+
+(A) 8
+(B) 9
+(C) 11
+(D) 22
+(E) 44 
