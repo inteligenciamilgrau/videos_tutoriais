@@ -1,13 +1,17 @@
 # para instalar todos os modulos
 # pip install -r requirements.txt
-import openai  # pip install openai
+from openai import OpenAI  # pip install openai
 import speech_recognition as sr  # pip install SpeechRecognition
 import whisper  # pip install whisper-openai
 import pyttsx3  # pip install pyttsx3
 import os
+#from dotenv import load_dotenv
+#load_dotenv()
+
+client = OpenAI()
 
 # Initialize the API key
-openai.api_key = "sua_key_string"
+client.api_key = "sua_key_string"
 
 # caso nao queira falar "assistente" ou "Chat GPT"
 sem_palavra_ativadora = False
@@ -29,8 +33,8 @@ if entrada_por_texto:
 
 def generate_answer(messages):
     #response = openai.ChatCompletion.create( ## Api antiga
-    response = openai.chat.completions.create( ## API nova
-        model="gpt-3.5-turbo",  ##
+    response = client.chat.completions.create( ## API nova
+        model="gpt-4o-mini",  ##
         messages=messages,
         temperature=0.5
     )
