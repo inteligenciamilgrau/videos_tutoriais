@@ -35,7 +35,7 @@ if entrada_por_texto:
     ajustar_ambiente_noise = False
 
 # Initialize the API key
-client.api_key = "sua_key_string"
+client.api_key = sua_key_string
 
 code_block_regex = re.compile(r"```(.*?)```", re.DOTALL)
 
