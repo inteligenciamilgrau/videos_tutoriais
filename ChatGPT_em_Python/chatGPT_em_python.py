@@ -3,15 +3,19 @@
 # criar uma chave "API key" no site da OpenAI
 # substituir a sua chave no codigo
 
-import openai
+from openai import OpenAI
+#from dotenv import load_dotenv
+#load_dotenv()
+
+client = OpenAI()
 
 # Initialize the API key
-openai.api_key = "sua_key_string"
+client.api_key = "sua_key_string"
 
 def gerar_resposta(messages):
     #response = openai.ChatCompletion.create( ## Api antiga
-    response = openai.chat.completions.create( ## API nova
-        model="gpt-3.5-turbo", 
+    response = client.chat.completions.create( ## API nova
+        model="gpt-4o-mini", 
         messages=messages,
         temperature=0.5
     )
